@@ -1,4 +1,4 @@
-const registerUser = require("../../registerUser");
+const registerUser = require("../services/registerUser");
 const asyncHandler = require("express-async-handler");
 
 class UserController {
