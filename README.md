@@ -1,10 +1,14 @@
 # UberClone
 
+UberClone is a backend service that mimics the functionality of the Uber application. It provides user authentication, profile management, and other essential features.
+
 ## User Routes
 
 ### POST RegisterUser
 
 `https://uber-clone-backend-theta.vercel.app/user/register`
+
+Registers a new user.
 
 **Body (urlencoded)**
 
@@ -43,6 +47,8 @@ curl --location 'https://uber-clone-backend-theta.vercel.app/user/register' \
 
 `https://uber-clone-backend-theta.vercel.app/user/login`
 
+Logs in an existing user.
+
 **Body (urlencoded)**
 
 - `email`: farhan@email.com
@@ -76,6 +82,8 @@ curl --location 'https://uber-clone-backend-theta.vercel.app/user/login' \
 
 `https://uber-clone-backend-theta.vercel.app/user/me`
 
+Retrieves the profile of the logged-in user.
+
 **Authorization**
 
 - Bearer Token: `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3NmZlN2M4YWNlY2YwYzNjMWFhNTM2MSIsImlhdCI6MTczNTM5NjU4NCwiZXhwIjoxNzM1NDgyOTg0fQ.QEoR7or0q10Gv8HkYcJ-BppxXYtLc4F36STg1VMBSDw`
@@ -101,6 +109,8 @@ curl --location 'https://uber-clone-backend-theta.vercel.app/user/me'
 ### POST Logout
 
 `https://uber-clone-backend-theta.vercel.app/user/logout`
+
+Logs out the current user.
 
 **Authorization**
 
