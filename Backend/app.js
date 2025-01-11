@@ -3,6 +3,7 @@ const cors = require("cors");
 const connect = require("./src/db/connect");
 const userRoutes = require("./src/routes/userRoutes");
 const globalErrorHandler = require("./src/middlewares/globalErrorHandler");
+const captainRoutes = require("./src/routes/captainRoutes");
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(express.json());
 connect();
 
 app.use("/user", userRoutes);
+app.use("/captain", captainRoutes);
 app.use("*", (req, res) => {
   res.status(404).json({ message: "Invalid URL" });
 });
