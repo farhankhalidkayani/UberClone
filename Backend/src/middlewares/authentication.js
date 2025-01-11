@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const dotenv = require("dotenv");
 dotenv.config();
 const User = require("../models/userModel");
+const Captain = require("../models/captainModel");
 const BlacklistToken = require("../models/blacklistTokenModel");
 
 const authenticateToken = async (req, res, next) => {
@@ -25,6 +26,9 @@ const authenticateToken = async (req, res, next) => {
       return res.status(403).json({ message: "Token is invalid or expired" });
     }
     req.user = await User.findById(user.id).select("-password");
+    if (!req.user) {
+      req.user = await Captain.findById(user.id).select("-password");
+    }
     next();
   });
 };

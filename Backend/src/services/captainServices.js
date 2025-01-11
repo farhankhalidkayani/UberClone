@@ -3,7 +3,7 @@ const blackList = require("../models/blacklistTokenModel");
 class CaptainServices {
   static registerCaptain = async (req, res) => {
     const exists = await Captain.find({ email: req.body.email });
-    if (exists.length) {
+    if (exists.length !== 0) {
       res.status(400);
       throw new Error("Captain already exists");
     }
@@ -13,12 +13,7 @@ class CaptainServices {
       lastName: req.body.lastName,
       email: req.body.email,
       password: await Captain.hashPassword(req.body.password),
-      vehicle: {
-        color: req.body.color,
-        plate: req.body.plate,
-        capacity: req.body.capacity,
-        vehicleType: req.body.vehicleType,
-      },
+      vehicle: req.body.vehicle,
     });
     const token = newCaptain.createJwtToken();
     return { newCaptain, token };
@@ -43,12 +38,7 @@ class CaptainServices {
   };
 
   static getCaptainProfile = async (req, res) => {
-    const captain = await Captain.findById(req.user._id);
-    if (!captain) {
-      res.status(404);
-      throw new Error("Captain not found");
-    }
-    return captain;
+    return req.user;
   };
 }
 module.exports = CaptainServices;
