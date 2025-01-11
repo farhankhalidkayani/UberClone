@@ -1,5 +1,5 @@
 const Captain = require("../models/captainModel");
-const blackList = require("../models/blackListModel");
+const blackList = require("../models/blacklistTokenModel");
 class CaptainServices {
   static registerCaptain = async (req, res) => {
     const exists = await Captain.find({ email: req.body.email });
